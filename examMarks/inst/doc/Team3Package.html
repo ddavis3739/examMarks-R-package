@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Andrew Davis, Andriani Hadjiconstanti, Zamfirescu Ana Maria, and Hannah Leila Tesfay" />
+
+
+<title>Team3Package</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Team3Package</h1>
+<h4 class="author"><em>Andrew Davis, Andriani Hadjiconstanti, Zamfirescu Ana Maria, and Hannah Leila Tesfay</em></h4>
+<h4 class="date"><em>26-04-2017</em></h4>
+
+
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(examMarks)</code></pre></div>
+<p>This package is designed to generate random answers to a given exam for a given number of students. It can then mark exam answers as well as generating visual representaions of the exam marks and analyzing the mark distribution as well.</p>
+<div id="generating-random-answers" class="section level2">
+<h2>Generating random answers</h2>
+<div id="generatestudentanswersforexam" class="section level3">
+<h3>generateStudentAnswersForExam()</h3>
+<p>By using generateStudentAnswersForExam(), one is able to create an answer sheet based on the total number of questions in an exam and the amount of questions that the student is asked. moduleID and studentID is only required if you are writing to a file as they form the file name.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">generateStudentAnswersForExam</span>(<span class="dt">totalNumberofQuestions =</span> <span class="dv">100</span>, 
+                                     <span class="dt">numberOfQuestionsToAnswer=</span> <span class="dv">30</span>, 
+                                     <span class="dt">writeToFile =</span> F))</code></pre></div>
+<pre><code>##   question answer
+## 1        1      e
+## 2        6   &lt;NA&gt;
+## 3        8      d
+## 4       14      c
+## 5       16      d
+## 6       26      b</code></pre>
+<p>If one wants to write the generated answer sheet to a file then the file will be saved according to moduleID and studentID. For example this file would be saved as ‘BS281_answers_12.tsv’.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">generateStudentAnswersForExam</span>(<span class="dt">totalNumberofQuestions =</span> <span class="dv">100</span>, 
+                              <span class="dt">numberOfQuestionsToAnswer=</span> <span class="dv">30</span>, <span class="dt">writeToFile =</span> T, 
+                              <span class="dt">moduleID =</span> <span class="st">'BS281'</span>, <span class="dt">studentID =</span> <span class="st">'12'</span>)</code></pre></div>
+</div>
+<div id="generateallstudentsanswersforexam" class="section level3">
+<h3>generateAllStudentsAnswersForExam()</h3>
+<p>Using the generateAllStudentsAnswersForExam() function one is able to generate answer sheets for multiple students. This function uses the generateStudentAnswersForExam() function witnin it. Datasets are included in this package and are listed as defualt values to demo how the functions runs. readFromFiles must equal TRUE if one needs to use external files to run the function.</p>
+<p>In this case only moduleID is required. The output is split into a list with the first part conatining a list of the students taking the module and the second part of the list conatining a list of all the student answers.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test =<span class="st"> </span><span class="kw">generateAllStudentsAnswersForExam</span>(<span class="st">'BS285'</span>, <span class="dt">writeToFile =</span> <span class="ot">FALSE</span>)
+<span class="kw">head</span>(test[[<span class="dv">1</span>]])</code></pre></div>
+<pre><code>##      ID              degree
+## 1 39502 Biological Sciences
+## 4 27854 Biological Sciences
+## 5 46107 Biological Sciences
+## 7  2166 Biological Sciences
+## 8 32613 Biological Sciences
+## 9 20426 Biological Sciences</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">data.frame</span>(test[[<span class="dv">2</span>]][<span class="dv">1</span>]))</code></pre></div>
+<pre><code>##   X39502.question X39502.answer
+## 1               4             c
+## 2               9             d
+## 3              12             e
+## 4              13             c
+## 5              14             a
+## 6              15             c</code></pre>
+<p>If one wants to write the answers to files then a folder is created with all of the student answers contained within. A file is also created that lists the students that took the exam.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">generateAllStudentsAnswersForExam</span>(<span class="st">'BS285'</span>, <span class="dt">writeToFile =</span> <span class="ot">TRUE</span>)</code></pre></div>
+</div>
+<div id="createanswerkey" class="section level3">
+<h3>createAnswerKey()</h3>
+<p>A randomly generated answer key can also be created using the createAnswerKey() function. The number of questions and the answer options must be specified.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">createAnswerKey</span>(<span class="dt">numberOfQuestions =</span> <span class="dv">30</span>, <span class="dt">writeToFile =</span> <span class="ot">FALSE</span>, 
+                     <span class="dt">ansOptions =</span> letters[<span class="dv">1</span>:<span class="dv">5</span>]))</code></pre></div>
+<pre><code>## [1] &quot;e&quot; &quot;a&quot; &quot;b&quot; &quot;d&quot; &quot;c&quot; &quot;c&quot;</code></pre>
+<p>If the answer key is being written to a file then it is saved according to moduleID. For example this file be called ‘correct_answers_BS281.dat’</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">createAnswerKey</span>(<span class="dt">numberOfQuestions =</span> <span class="dv">30</span>, <span class="dt">writeToFile =</span> <span class="ot">TRUE</span>, <span class="dt">moduleID =</span> <span class="st">'BS281'</span>,
+                <span class="dt">ansOptions =</span> letters[<span class="dv">1</span>:<span class="dv">5</span>])</code></pre></div>
+</div>
+<div id="datasets-provided" class="section level3">
+<h3>Datasets provided</h3>
+<div id="exams" class="section level4">
+<h4>exams</h4>
+<p>A dataframe that indicates what modules each degree course takes, with Yes, No, or Optional being listed.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(exams)</code></pre></div>
+<pre><code>##   module Biological Sciences Genetics
+## 1  BS281                 Yes      Yes
+## 2  BS282                 Yes      Yes
+## 3  BS283                 Yes Optional
+## 4  BS284                  No      Yes
+## 5  BS285                 Yes       No</code></pre>
+</div>
+<div id="keys" class="section level4">
+<h4>keys</h4>
+<p>A list containing 5 different exam keys of varying length. All keys have possible answers being from “a” to “e”.</p>
+</div>
+<div id="students" class="section level4">
+<h4>students</h4>
+<p>A dataframe with the ID and degree course for each student.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(students)</code></pre></div>
+<pre><code>##      ID              degree
+## 1 39502 Biological Sciences
+## 2 58085            Genetics
+## 3 34055            Genetics
+## 4 27854 Biological Sciences
+## 5 46107 Biological Sciences
+## 6 76693            Genetics</code></pre>
+</div>
+<div id="questions" class="section level4">
+<h4>questions</h4>
+<p>A dataframe with the total number of questions in an exam and the amount of questions that need to be answered.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(questions)</code></pre></div>
+<pre><code>##   module questions totalQuestions
+## 1  BS281        30            100
+## 2  BS282        20             50
+## 3  BS283        30            150
+## 4  BS284        20            200
+## 5  BS285        50            100</code></pre>
+</div>
+</div>
+</div>
+<div id="marking-students" class="section level2">
+<h2>Marking Students</h2>
+<div id="markstudentsforexam" class="section level3">
+<h3>markStudentsForExam()</h3>
+<p>Using this function a dataframe can be created which contains the marks for each student for a given exam. The marks are based on the exam answers randomly generated from generateAllStudentsAnswersForExam().</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">markStudentsForExam</span>(<span class="dt">fileDir =</span> <span class="st">'./'</span>, 
+                         <span class="dt">ExamFilesDir =</span> <span class="st">'./BS281studentAnswerFiles'</span>, 
+                         <span class="dt">ModuleID =</span> <span class="st">'BS281'</span>))</code></pre></div>
+<pre><code>##   StudentID              Course Mark
+## 1     10161 Biological Sciences   20
+## 2     11724            Genetics    3
+## 3     11826            Genetics   17
+## 4     11832 Biological Sciences   17
+## 5     13403 Biological Sciences   10
+## 6     13652            Genetics   10</code></pre>
+</div>
+<div id="getdegree" class="section level3">
+<h3>getDegree()</h3>
+<p>This function is designed to be used in the addDegree() function to add the degree to each student. A singular mark is converted to a degree based on the mark.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getDegree</span>(<span class="dv">61</span>)</code></pre></div>
+<pre><code>## [1] &quot;2:1&quot;</code></pre>
+</div>
+<div id="adddegrees" class="section level3">
+<h3>addDegrees()</h3>
+<p>The purpose of this function is to add a degree for each student, amending the dataframe as an output.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">addDegrees</span>(testMarks))</code></pre></div>
+<pre><code>##   studentID              course mark Degree
+## 1         1 Biological Sciences   61    2:1
+## 2         2            Genetics   45    3rd
+## 3         3 Biological Sciences   43    3rd
+## 4         4            Genetics   22 failed
+## 5         5 Biological Sciences   97    1st
+## 6         6            Genetics   66    2:1</code></pre>
+</div>
+<div id="markstudents" class="section level3">
+<h3>markStudents()</h3>
+<p>Outputs a list of dataframes of student marks for each module or creates a folder with files with the marks for each exam depending on if writeToFile is TRUE or FALSE.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">markStudents</span>(<span class="dt">fileDir =</span> <span class="st">'./'</span>))</code></pre></div>
+<pre><code>##       Length Class      Mode
+## BS281 4      data.frame list
+## BS282 4      data.frame list
+## BS283 4      data.frame list
+## BS284 4      data.frame list
+## BS285 4      data.frame list</code></pre>
+</div>
+</div>
+<div id="data-analysis" class="section level2">
+<h2>Data Analysis</h2>
+<div id="examhist" class="section level3">
+<h3>examHist()</h3>
+<p>A histogram is generated using a list conatining dataframes for each moduleID, with columns of studentID, degree course, and mark, and the moduleID being assesed.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">examHist</span>(test, <span class="st">'BS281'</span>)</code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="modulehist" class="section level3">
+<h3>moduleHist()</h3>
+<p>A histogram is generated using a dataframe, with columns of studentID, degree course, and mark, and the degree subject being assesed.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">moduleHist</span>(testMarks, <span class="st">'Biological Sciences'</span>)</code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="testwithinmodule" class="section level3">
+<h3>testWithinModule()</h3>
+<p>Either a t-test or a wilcoxin test is run to test for a difference in the distribution of marks between degree courses for a module. A normality test is run to determine which test will be run.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">testWithinModule</span>(test, <span class="st">'BS281'</span>)</code></pre></div>
+<pre><code>## 
+##  Wilcoxon rank sum test with continuity correction
+## 
+## data:  data[data[, 2] == &quot;Genetics&quot;, 3] and data[data[, 2] == &quot;Biological Sciences&quot;, 3]
+## W = 1146.5, p-value = 0.4858
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+<div id="testbetweencourse" class="section level3">
+<h3>testBetweenCourse()</h3>
+<p>Either a t-test or a wilcoxin test is run to test for a difference in the distribution of marks between degree courses for overall marks. A normality test is run to determine which test will be run.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">testBetweenCourse</span>(testMarks)</code></pre></div>
+<pre><code>## 
+##  Wilcoxon rank sum test with continuity correction
+## 
+## data:  data[data[, 2] == &quot;Genetics&quot;, 3] and data[data[, 2] == &quot;Biological Sciences&quot;, 3]
+## W = 1330.5, p-value = 0.5715
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

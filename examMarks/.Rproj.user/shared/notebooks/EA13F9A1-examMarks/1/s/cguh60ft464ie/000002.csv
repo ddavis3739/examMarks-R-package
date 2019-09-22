@@ -1,0 +1,2 @@
+"0","test = generateAllStudentsAnswersForExam('BS285', writeToFile = FALSE)"
+"0","head(test[[1]])"

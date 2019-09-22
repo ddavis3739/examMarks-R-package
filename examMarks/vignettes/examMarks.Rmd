@@ -1,0 +1,220 @@
+---
+title: "examMarks"
+author: "Andrew Davis, Andriani Hadjiconstanti, and Zamfirescu Ana Maria"
+date: "26-04-2017"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{examMarks}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r message = FALSE}
+library(examMarks)
+```
+
+This package is designed to generate random answers to a given exam for a given 
+number of students. It can then mark exam answers as well as generating visual 
+representaions of the exam marks and analyzing the mark distribution as well. 
+
+## Generating random answers
+
+### generateStudentAnswersForExam()
+
+By using generateStudentAnswersForExam(), one is able to create an answer sheet 
+based on the total number of questions in an exam and the amount of questions 
+that the student is asked. moduleID and studentID is only required if you are 
+writing to a file as they form the file name.
+
+```{r message = FALSE}
+head(generateStudentAnswersForExam(totalNumberofQuestions = 100, 
+                                     numberOfQuestionsToAnswer= 30, 
+                                     writeToFile = F))
+```
+
+If one wants to write the generated answer sheet to a file then the file will 
+be saved according to moduleID and studentID. For example this file would be 
+saved as 'BS281_answers_12.tsv'. 
+
+```{r message = FALSE, eval = FALSE}
+generateStudentAnswersForExam(totalNumberofQuestions = 100, 
+                              numberOfQuestionsToAnswer= 30, writeToFile = T, 
+                              moduleID = 'BS281', studentID = '12')
+```
+
+### generateAllStudentsAnswersForExam()
+
+Using the generateAllStudentsAnswersForExam() function one is able to generate 
+answer sheets for multiple students. This function uses the 
+generateStudentAnswersForExam() function witnin it. Datasets are included in 
+this package and are listed as defualt values to demo how the functions runs. 
+readFromFiles must equal TRUE if one needs to use external files to run the 
+function. 
+
+In this case only moduleID is required. The output is split into a list with the 
+first part conatining a list of the students taking the module and the second 
+part of the list conatining a list of all the student answers. 
+
+```{r message = FALSE}
+test = generateAllStudentsAnswersForExam('BS285', writeToFile = FALSE)
+head(test[[1]])
+head(data.frame(test[[2]][1]))
+```
+
+If one wants to write the answers to files then a folder is created with all of
+the student answers contained within. A file is also created that lists the 
+students that took the exam.
+
+```{r message = FALSE, eval = FALSE}
+generateAllStudentsAnswersForExam('BS285', writeToFile = TRUE)
+```
+
+### createAnswerKey()
+
+A randomly generated answer key can also be created using the createAnswerKey()
+function. The number of questions and the answer options must be specified. 
+
+```{r message = FALSE}
+head(createAnswerKey(numberOfQuestions = 30, writeToFile = FALSE, 
+                     ansOptions = letters[1:5]))
+```                           
+
+If the answer key is being written to a file then it is saved according to 
+moduleID. For example this file be called 'correct_answers_BS281.dat'
+
+```{r message = FALSE}
+createAnswerKey(numberOfQuestions = 30, writeToFile = TRUE, moduleID = 'BS281',
+                ansOptions = letters[1:5])
+```     
+
+### Datasets provided 
+
+#### exams
+
+A dataframe that indicates what modules each degree course takes, with Yes, No, 
+or Optional being listed.
+
+```{r message = FALSE}
+head(exams)
+``` 
+
+#### keys 
+
+A list containing 5 different exam keys of varying length. All keys have 
+possible answers being from "a" to "e".
+
+#### students
+
+A dataframe with the ID and degree course for each student.
+
+```{r message = FALSE}
+head(students)
+``` 
+
+#### questions
+
+A dataframe with the total number of questions in an exam and the amount of 
+questions that need to be answered. 
+
+```{r message = FALSE}
+head(questions)
+``` 
+
+## Marking Students
+
+### markStudentsForExam()
+
+Using this function a dataframe can be created which contains the marks for each
+student for a given exam. The marks are based on the exam answers randomly 
+generated from generateAllStudentsAnswersForExam().
+
+```{r message = FALSE}
+head(markStudentsForExam(fileDir = './', 
+                         ExamFilesDir = './BS281studentAnswerFiles', 
+                         ModuleID = 'BS281'))
+``` 
+
+
+### getDegree()
+
+This function is designed to be used in the addDegree() function to add the degree to 
+each student. A singular mark is converted to a degree based on the mark.
+
+```{r message = FALSE}
+getDegree(61)
+```
+
+### addDegrees()
+
+The purpose of this function is to add a degree for each student, amending the 
+dataframe as an output.
+
+```{r message = FALSE, echo=FALSE}
+studentID = 1:100; mark = sample(1:100, 100, replace = T)
+course = sample(c('Biological Sciences', 'Genetics'), 100, replace = T)
+testMarks = data.frame(studentID, course, mark)
+``` 
+```{r message = FALSE}
+head(addDegrees(testMarks))
+``` 
+
+### markStudents()
+
+Outputs a list of dataframes of student marks for each module or creates a 
+folder with files with the marks for each exam depending on if writeToFile is 
+TRUE or FALSE.
+
+```{r message = FALSE}
+summary(markStudents(fileDir = './'))
+``` 
+
+## Data Analysis
+
+### examHist()
+
+A histogram is generated using a list conatining dataframes for each moduleID, with columns of studentID, degree course, and mark, and the moduleID being assesed.
+
+```{r message = FALSE, echo=FALSE}
+studentID = 1:100; mark = sample(1:100, 100, replace = T)
+course = sample(c('Biological Sciences', 'Genetics'), 100, replace = T)
+testMarks = data.frame(studentID, course, mark, sapply(mark, getDegree))
+test = list(testMarks); names(test) = 'BS281'
+```
+```{r message = FALSE}
+examHist(test, 'BS281')
+``` 
+
+### moduleHist()
+
+A histogram is generated using a dataframe, with columns of studentID, degree 
+course, and mark, and the degree subject being assesed.
+
+```{r message = FALSE}
+moduleHist(testMarks, 'Biological Sciences')
+``` 
+
+### testWithinModule()
+
+Either a t-test or a wilcoxin test is run to test for a difference in the 
+distribution of marks between degree courses for a module. A normality test is 
+run to determine which test will be run.
+
+```{r message = FALSE}
+testWithinModule(test, 'BS281')
+``` 
+
+### testBetweenCourse()
+
+Either a t-test or a wilcoxin test is run to test for a difference in the 
+distribution of marks between degree courses for overall marks. A normality test 
+is run to determine which test will be run.
+
+```{r message = FALSE, echo=FALSE}
+studentID = 1:100; mark = sample(1:100, 100, replace = T)
+course = sample(c('Biological Sciences', 'Genetics'), 100, replace = T)
+testMarks = data.frame(studentID, course, mark, sapply(mark, getDegree))
+```
+```{r message = FALSE}
+testBetweenCourse(testMarks)
+``` 
+

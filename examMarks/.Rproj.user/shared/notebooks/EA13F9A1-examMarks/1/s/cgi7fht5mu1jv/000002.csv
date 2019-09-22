@@ -1,0 +1,3 @@
+"0","studentID = 1:100; mark = sample(1:100, 100, replace = T)"
+"0","course = sample(c('Biological Sciences', 'Genetics'), 100, replace = T)"
+"0","testMarks = data.frame(studentID, course, mark)"
